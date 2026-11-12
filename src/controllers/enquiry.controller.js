@@ -19,7 +19,7 @@ const createEnquiry = async (req, res) => {
     const record = { fullName, mobile, email, message, reference, date };
 
     const adminMail = transporter.sendMail({
-      from: `"${BRAND} Website" <${process.env.EMAIL_USER}>`,
+      from: `"Sculptra Enquiry ${BRAND}" <${process.env.EMAIL_USER}>`,
       to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
       replyTo: email,
       subject: `New course enquiry from ${fullName} (${reference})`,
