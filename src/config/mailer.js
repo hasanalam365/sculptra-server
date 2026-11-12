@@ -1,13 +1,25 @@
+// config/mailer.js — unchanged from your current site, included here only
+// for completeness. No edits needed.
 const nodemailer = require("nodemailer");
 
+if (!process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+  throw new Error("❌ EMAIL_USER or EMAIL_PASS missing in environment variables");
+}
+
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST,
-  port: Number(process.env.SMTP_PORT) || 465,
-  secure: String(process.env.SMTP_SECURE ?? "true") === "true", // true for 465, false for 587
+  service: "gmail",
   auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS,
   },
+});
+
+transporter.verify((error) => {
+  if (error) {
+    console.error("❌ Mailer connection failed:", error.message);
+  } else {
+    console.log("✅ Mailer ready");
+  }
 });
 
 module.exports = transporter;

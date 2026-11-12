@@ -14,8 +14,6 @@ const corsOptions = {
   origin: [
     "http://localhost:5173",
     "https://sculptra.vercel.app",
-    "https://sculptraessence.co.uk",
-    "https://www.sculptraessence.co.uk",
   ],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
